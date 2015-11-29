@@ -3,3 +3,13 @@
 
 - name: Install OpenJDK
   yum: name=java-{{ elk_jdk_ver }}-openjdk state=present
+  tags:
+    - elk-common
+    
+- name: install Ansible SELinux software group
+  yum: name={{item}} state=present
+  with_items:
+     - libselinux-python
+     - libsemanage-python
+  tags:
+    - elk-common
